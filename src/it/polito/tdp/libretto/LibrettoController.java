@@ -47,6 +47,21 @@ public class LibrettoController {
 
     @FXML
     void handleCerca(ActionEvent event) {
+    	String codice = txtCodice.getText() ;
+    	if(codice.length()<5){
+    		txtMessage.appendText("Codice corso non valido\n");
+    		return ;
+    	}
+    	
+    	Esame e = model.trovaEsame(codice);
+    	if(e==null){
+    		txtMessage.appendText("Codice "+codice+" non trovato\n");
+    	} else {
+    		txtMessage.appendText("Codice "+codice+" trovato\n");
+    		txtCodice.setText(e.getCodice());
+    		txtTitolo.setText(e.getTitolo());
+    		txtDocente.setText(e.getDocente());
+    	}
 
     }
 
